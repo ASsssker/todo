@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "todo.sso.v1;ssov1";
+
+service Auth {
+    rpc Register(RegisterRequest) returns (RegisterResponse);
+    rpc Login(LoginRequest) returns (LoginResponse);
+    rpc Logout (LogoutRequest) returns (LogoutResponse);
+}
+
+message RegisterRequest {
+    string email = 1;
+    string username = 2;
+}
+
+message RegisterResponse {
+    int64 user_id = 1;
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string token = 1;
+}
+
+message LogoutRequest {
+    string token = 1;
+}
+
+message LogoutResponse {
+    bool success = 1;
+}

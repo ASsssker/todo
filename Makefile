@@ -33,3 +33,16 @@ test:
 test/cover:
 	go test -v -race -buildvcs -coverprofile=/tmp/coverage.out ./...
 	go tool cover -html=/tmp/coverage.out
+
+# ==================================================================================== #
+# CODE GENERATION
+# ==================================================================================== #
+
+## generate-sso: generate sso service grpc files
+.PHONY: generate-sso
+generate-sso:
+		protoc -I protos/proto ./protos/proto/sso/*.proto --go_out=./protos/gen/go/ --go_opt=paths=source_relative --go-grpc_out=./protos/gen/go/ --go-grpc_opt=paths=source_relative
+
+## generate: generate grpc and api files
+.PHONY: generate
+generate: generate-sso

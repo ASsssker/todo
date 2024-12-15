@@ -315,5 +315,4 @@ func TestServerRegister_BadPath(t *testing.T) {
 
 func fakePassword() string {
 	return fake.Password(true, true, true, false, false, 10)
-
 }
